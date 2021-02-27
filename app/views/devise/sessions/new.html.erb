@@ -22,15 +22,16 @@
     </div>
     <br/>
     <br/>
-    <div class="btn btn-primary">
-     <%= link_to 'Dashboard', :class => "btn btn-primary"%>
-</div>
+
     <br/>
-    <p class="mt-5 mb-3 text-muted">© CPDI 2021</p>
-  <% end %>
+    <p class="mt-5 mb-3 text-muted text-center">© CPDI 2021</p>
+
 
 
 </main>
 
+<div class="btn">
+  <%= link_to 'skip', dashboard_unauth_index_path, :class => "btn"%>
+</div>
 
-
+  <% end %>
