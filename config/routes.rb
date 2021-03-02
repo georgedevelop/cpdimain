@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   root "dashboard#index"
 
+  get 'dashboard/users', to: 'users#index'
+
   get 'dashboard_unauth/orders', to: 'dashboard_unauth#orders'
   get 'dashboard_unauth/products', to: 'dashboard_unauth#products'
   get 'dashboard_unauth/customers', to: 'dashboard_unauth#customers'
