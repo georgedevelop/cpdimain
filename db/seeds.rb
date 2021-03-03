@@ -9,3 +9,6 @@
 
 User.create(email: "admin@example.com", password: "adminpassword", is_admin: true)
 User.create(email: "normaluser@example.com", password: "normalpassword")
+
+Role.create(name: "IT")
+Role.create(name: "HR Officer")

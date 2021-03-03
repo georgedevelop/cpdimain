@@ -7,6 +7,18 @@ class UsersController < ApplicationController
 	def index
 		@users = User.all
 	end
+
+	def update_role
+		@user = User.find(params[:id])
+
+		respond_to do |format|
+	      if @user.update(role_params)
+	        format.html { redirect_to dashboard_users_path, notice: "Role was successfully updated." }
+	      else
+	        format.html { redirect_to dashboard_users_path, status: :unprocessable_entity }
+	      end
+	    end
+	end
 	
 
 	private
@@ -16,6 +28,11 @@ class UsersController < ApplicationController
 			redirect_to root_path
 		end
 	end
+
+	# Only allow a list of trusted parameters through.
+    def role_params
+      params.require(:user).permit(:role)
+    end
 
 
 end

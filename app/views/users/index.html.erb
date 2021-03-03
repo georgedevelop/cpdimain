@@ -7,6 +7,8 @@
             <th>Email</th>
             <th>Sign Up Date</th>
             <th>Is Admin?</th>
+            <th>Role</th>
+            <th>Action</th>
           </tr>
           </thead>
           <tbody>
@@ -17,6 +19,22 @@
 	            <td><%= u.email %></td>
 	            <td><%= u.created_at %></td>
 	            <td><% if u.is_admin? %>Yes<% else %>No<% end %></td>
+              <% if u.is_admin? %>
+              <td>
+                Admin
+              </td>
+              <td>
+              </td>
+              <% else %>
+                <%= form_with model: User, url: user_update_roles_path(u.id), method: :put do |form| %>
+                <td>
+                  <%= form.select :role, Role.all.map(&:name), selected: u.role %>
+                </td>
+                <td>
+                  <%= form.submit "Update" %>
+                </td>
+                <% end %>
+              <% end %>
           	</tr>
           <% end %>
           </tbody>

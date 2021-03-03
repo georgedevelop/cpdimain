@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :roles
   get 'dashboard_unauth/index'
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   root "dashboard#index"
 
   get 'dashboard/users', to: 'users#index'
+  put 'dashboard/users/:id', to: 'users#update_role', as: :user_update_roles
 
   get 'dashboard_unauth/orders', to: 'dashboard_unauth#orders'
   get 'dashboard_unauth/products', to: 'dashboard_unauth#products'
