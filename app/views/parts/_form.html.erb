@@ -1,0 +1,58 @@
+<%= form_with(model: part) do |form| %>
+  <% if part.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(part.errors.count, "error") %> prohibited this part from being saved:</h2>
+
+      <ul>
+        <% part.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :main_image %>
+    <%= form.file_field :main_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity %>
+  </div>
+
+ 
+  <div class="field">
+    <%= form.label :mfr_number %>
+    <%= form.text_field :mfr_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :barcode %>
+    <%= form.text_field :barcode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :machine %>
+    <%= form.text_field :machine %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendors %>
+    <%= form.select :vendor_ids, options_for_vendor, {}, {:multiple => true } %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

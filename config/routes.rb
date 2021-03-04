@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  scope '/dashboard' do
+      resources :parts, :vendors
+  end
+  resources :parts
   resources :roles
   get 'dashboard_unauth/index'
   devise_for :users
