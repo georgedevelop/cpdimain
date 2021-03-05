@@ -2,13 +2,12 @@ class PartsController < ApplicationController
   before_action :set_part, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
   before_action :set_active_storage_host
-  
+  layout 'dashboard'
+
   def set_active_storage_host
     ActiveStorage::Current.host = 'http://localhost:3000' if ActiveStorage::Current.host.blank?
     true
   end
-  
-  layout 'dashboard'
 
   # GET /parts or /parts.json
   def index

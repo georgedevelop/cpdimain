@@ -7,7 +7,7 @@
             <th>Email</th>
             <th>Sign Up Date</th>
             <th>Is Admin?</th>
-            <th>Role</th>
+            <th>Policy</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -28,7 +28,7 @@
               <% else %>
                 <%= form_with model: User, url: user_update_roles_path(u.id), method: :put do |form| %>
                 <td>
-                  <%= form.select :role, Role.all.map(&:name), selected: u.role %>
+                   <%= form.select :policy_ids, options_for_policy, {selected: u.policies.map(&:id)}, {:multiple => true } %>
                 </td>
                 <td>
                   <%= form.submit "Update" %>

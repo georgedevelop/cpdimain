@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
 	# Only allow a list of trusted parameters through.
     def role_params
-      params.require(:user).permit(:role)
+      params.require(:user).permit(policy_ids: [])
     end
 
 

@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
 
   scope '/dashboard' do
-      resources :parts, :vendors
+      resources :parts, :vendors, :policies, :roles
   end
-  resources :parts
-  resources :roles
   get 'dashboard_unauth/index'
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

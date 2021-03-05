@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_04_132758) do
+ActiveRecord::Schema.define(version: 2021_03_05_121016) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -58,6 +58,30 @@ ActiveRecord::Schema.define(version: 2021_03_04_132758) do
     t.index ["vendor_id"], name: "index_parts_vendors_on_vendor_id"
   end
 
+  create_table "policies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "policy_roles", force: :cascade do |t|
+    t.integer "policy_id", null: false
+    t.integer "role_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["policy_id"], name: "index_policy_roles_on_policy_id"
+    t.index ["role_id"], name: "index_policy_roles_on_role_id"
+  end
+
+  create_table "policy_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "policy_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["policy_id"], name: "index_policy_users_on_policy_id"
+    t.index ["user_id"], name: "index_policy_users_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -86,4 +110,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_132758) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "policy_roles", "policies"
+  add_foreign_key "policy_roles", "roles"
+  add_foreign_key "policy_users", "policies"
+  add_foreign_key "policy_users", "users"
 end
