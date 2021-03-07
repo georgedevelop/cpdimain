@@ -28,10 +28,10 @@
               <% else %>
                 <%= form_with model: User, url: user_update_roles_path(u.id), method: :put do |form| %>
                 <td>
-                   <%= form.select :policy_ids, options_for_policy, {selected: u.policies.map(&:id)}, {:multiple => true } %>
+                   <%= form.select :policy_ids, options_for_policy, {selected: u.policies.map(&:id)}, {:multiple => true, class: 'form-control' } %>
                 </td>
                 <td>
-                  <%= form.submit "Update" %>
+                  <%= form.submit "Update", class: 'btn btn-primary' %>
                 </td>
                 <% end %>
               <% end %>
