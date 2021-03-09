@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   scope '/dashboard' do
       resources :parts, :vendors, :policies, :roles
+      get 'part/search', to: 'parts#search'
   end
   get 'dashboard_unauth/index'
   devise_for :users
@@ -17,5 +18,7 @@ Rails.application.routes.draw do
   get 'dashboard_unauth/customers', to: 'dashboard_unauth#customers'
   get 'dashboard_unauth/users', to: 'dashboard_unauth#users'
   get 'dashboard_unauth/departments', to: 'dashboard_unauth#departments'
+
+
 
 end

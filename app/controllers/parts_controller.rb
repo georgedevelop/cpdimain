@@ -2,6 +2,7 @@ class PartsController < ApplicationController
   before_action :set_part, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
   before_action :set_active_storage_host
+  before_action :force_json, only: :search
   layout 'dashboard'
 
   def set_active_storage_host
@@ -12,6 +13,24 @@ class PartsController < ApplicationController
   # GET /parts or /parts.json
   def index
     @parts = Part.all
+  end
+
+  def search
+    
+    if params.has_key?(:q)
+      q = params[:q].downcase
+      @parts = Part.where("barcode LIKE ?", "%#{q}%").limit(5)
+    elsif params.has_key?(:mfr_number)
+      mfr = params[:mfr_number].downcase
+      @parts = Part.where("mfr_number LIKE ?", "%#{mfr}%").limit(5)
+    elsif params.has_key?(:machine)
+      machine = params[:machine].downcase
+      @parts = Part.where("machine LIKE ?", "%#{machine}%").limit(5)
+    elsif params.has_key?(:location)
+      location = params[:location].downcase
+      @parts = Part.where("location LIKE ?", "%#{location}%").limit(5)
+    end
+
   end
 
   # GET /parts/1 or /parts/1.json
@@ -68,6 +87,10 @@ class PartsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_part
       @part = Part.find(params[:id])
+    end
+
+    def force_json
+      request.format = :json
     end
 
     # Only allow a list of trusted parameters through.

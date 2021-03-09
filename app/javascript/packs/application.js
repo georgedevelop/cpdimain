@@ -9,8 +9,16 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 require("bootstrap")
+require("jquery")
+require("easy-autocomplete")
+
+
 import "../stylesheets/application";
+
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+require("packs/parts")
+
